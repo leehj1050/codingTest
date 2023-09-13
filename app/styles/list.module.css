@@ -1,7 +1,10 @@
 .main {
-  padding: 2em;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  border: 1px solid red;
 }
-.text_sections {
+.section {
   display: flex;
   justify-content: space-around;
 }
@@ -21,16 +24,24 @@
 .input_box input {
   width: 100%;
   padding: 0.6em;
+  border-radius: 10px;
+  font-size: 15px;
+  border: 1px solid rgb(219, 217, 217);
+}
+.input_box input::placeholder {
+  color: rgb(219, 217, 217);
 }
 .icons_wrap {
   display: flex;
   font-size: 1.3em;
   position: absolute;
-  right: 1.2em;
-  top: 22px;
-  border: 1px solid;
+  right: 1.4em;
+  top: 23px;
 }
 .icons_wrap div {
   position: absolute;
   cursor: pointer;
+}
+.search {
+  color: rgb(219, 217, 217);
 }

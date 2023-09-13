@@ -1,0 +1,7 @@
+.section {
+  display: flex;
+  justify-content: space-around;
+}
+.item {
+  /* padding: 1em 4em; */
+}

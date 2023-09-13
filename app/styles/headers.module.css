@@ -1,0 +1,9 @@
+.inner_box {
+  display: flex;
+  padding: 1.2em;
+  justify-content: space-between;
+  width: 12em;
+}
+.logo {
+  cursor: pointer;
+}

@@ -1,0 +1,36 @@
+.main {
+  padding: 2em;
+}
+.text_sections {
+  display: flex;
+  justify-content: space-around;
+}
+.text_box {
+  width: 15em;
+  padding: 1em;
+}
+.search_box {
+  width: 15em;
+  display: flex;
+  position: relative;
+  padding: 1em;
+}
+.input_box {
+  width: 100%;
+}
+.input_box input {
+  width: 100%;
+  padding: 0.6em;
+}
+.icons_wrap {
+  display: flex;
+  font-size: 1.3em;
+  position: absolute;
+  right: 1.2em;
+  top: 22px;
+  border: 1px solid;
+}
+.icons_wrap div {
+  position: absolute;
+  cursor: pointer;
+}

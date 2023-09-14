@@ -1,7 +1,18 @@
 .section {
+  width: 80%;
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 2em 0;
 }
+
+.section::before {
+  content: "";
+  width: 65%;
+  border: 1px solid rgb(227, 227, 227);
+  height: 0;
+}
+
 .item {
-  /* padding: 1em 4em; */
+  padding: 2em 0;
 }

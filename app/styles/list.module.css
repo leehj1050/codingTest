@@ -1,13 +1,16 @@
 .main {
+  width: 100%;
   display: flex;
-  justify-content: space-around;
   flex-direction: column;
-  border: 1px solid red;
+  align-items: center;
+  padding: 3em 0;
 }
 .section {
+  width: 80%;
   display: flex;
   justify-content: space-around;
 }
+
 .text_box {
   width: 15em;
   padding: 1em;
@@ -20,13 +23,18 @@
 }
 .input_box {
   width: 100%;
+  border: 1px solid rgb(219, 217, 217);
+  border-radius: 10px;
+  padding: 0 0.6em;
 }
 .input_box input {
-  width: 100%;
+  width: 85%;
   padding: 0.6em;
-  border-radius: 10px;
   font-size: 15px;
-  border: 1px solid rgb(219, 217, 217);
+  border: none;
+}
+.input_box input:focus {
+  outline: none;
 }
 .input_box input::placeholder {
   color: rgb(219, 217, 217);
@@ -35,7 +43,7 @@
   display: flex;
   font-size: 1.3em;
   position: absolute;
-  right: 1.4em;
+  right: 2em;
   top: 23px;
 }
 .icons_wrap div {

@@ -3,6 +3,8 @@ import { useState } from "react";
 import list from "../../styles/list.module.css";
 import { MdCancel, MdSearch } from "react-icons/md";
 import ListItem from "./listItem";
+import PageNation from "./pageNation";
+import Link from "next/link";
 
 export default function List() {
   const [search, setSearch] = useState("");
@@ -17,7 +19,7 @@ export default function List() {
   };
 
   return (
-    <main className={list.main}>
+    <main>
       <div className={list.section}>
         <div className={list.text_box}>
           <h2>공지사항</h2>
@@ -42,6 +44,10 @@ export default function List() {
       </div>
 
       <ListItem />
+      <div className={list.buttonBox}>
+        <Link href="/components/write">글쓰기</Link>
+      </div>
+      <PageNation />
     </main>
   );
 }

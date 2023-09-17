@@ -8,12 +8,23 @@ a {
   color: #fff;
   text-decoration: none;
 }
-h2 {
-  margin: 0;
-}
+
+ul,
+p,
+h2,
+h5,
 input {
-  padding: 0;
-}
-p {
   margin: 0;
+  padding: 0;
+  list-style: none;
+}
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3em 0;
+}
+.ql-editor {
+  min-height: 400px;
 }

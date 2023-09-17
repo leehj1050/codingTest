@@ -1,10 +1,10 @@
-.main {
+/* .main {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 3em 0;
-}
+} */
 .section {
   width: 80%;
   display: flex;
@@ -52,4 +52,22 @@
 }
 .search {
   color: rgb(219, 217, 217);
+}
+
+/*글쓰기 버튼*/
+.buttonBox {
+  width: 60%;
+  display: flex;
+  justify-content: flex-end;
+}
+.buttonBox a {
+  padding: 0.7em;
+  background-color: #fff;
+  border: 1px solid rgb(219, 217, 217);
+  border-radius: 5px;
+  color: #000;
+}
+.buttonBox a:hover {
+  cursor: pointer;
+  background-color: rgb(219, 217, 217);
 }

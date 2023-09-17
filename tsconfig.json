@@ -22,6 +22,16 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/test.js",
+    "app/page.tsx",
+    "pages/api/server.js",
+    "pages/api/upload.tsx",
+    "QuillEditor.ㅓㄴ"
+  ],
   "exclude": ["node_modules"]
 }

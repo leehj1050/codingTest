@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 //
@@ -6,7 +6,7 @@ import { storage } from "../../../utils/firebase";
 import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
 
 // 에디터 생성
-const QuillEditor = ({ contents, setContents }) => {
+const QuillEditor = ({ userText, setUserText }) => {
   const quillRef = useRef();
 
   // quill에서 사용할 모듈
@@ -58,14 +58,13 @@ const QuillEditor = ({ contents, setContents }) => {
       },
     };
   }, []);
+
   return (
     <ReactQuill
-      theme="snow"
       ref={quillRef}
-      value={contents.text}
-      onChange={(e) => {
-        setContents({ ...contents, text: e });
-      }}
+      theme="snow"
+      value={userText}
+      onChange={setUserText}
       modules={modules}
     />
   );

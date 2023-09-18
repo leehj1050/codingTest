@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import item from "../../styles/listItem.module.css";
 import Loading from "./loading";
 import Link from "next/link";
-import { Timestamp } from "firebase/firestore/lite";
 
 export interface IDetailInfo {
   title: string;
@@ -33,7 +32,6 @@ export default function ListItem() {
     const result = data.map((time) => detailDate(time.time));
     setResultTime(result);
   }, [data]);
-  console.log(resultTime);
 
   const detailDate = (a: number) => {
     const milliSeconds: number = new Date() - a;

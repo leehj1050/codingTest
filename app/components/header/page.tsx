@@ -10,7 +10,7 @@ export default function Header() {
         <Link href="/components/list">
           <Image src={logo} alt="logo" />
         </Link>
-        <Link href="/">홈</Link>
+        <Link href="/components/list">홈</Link>
       </div>
       <div className={headers.inner_box}>
         <Link href="/components/list">공지</Link>

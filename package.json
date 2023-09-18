@@ -23,5 +23,8 @@
     "react-icons": "^4.11.0",
     "react-quill": "^2.0.0",
     "typescript": "5.2.2"
+  },
+  "devDependencies": {
+    "@types/dompurify": "^3.0.2"
   }
 }

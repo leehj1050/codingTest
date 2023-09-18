@@ -8,14 +8,16 @@ import Loading from "../../list/loading";
 export interface detailInfo {
   title: string;
   text: string;
+  timestamp: string;
 }
 
 export default function Detail(props: any) {
   const router = useRouter();
   const { id } = props.params;
 
-  const [detail, setDetail] = useState<detailInfo>();
+  const [detail, setDetail] = useState<detailInfo | null>();
   const [loading, setLoading] = useState<boolean>(true);
+  const [date, setDate] = useState("");
 
   useEffect(() => {
     fetch(`/api/detail?id=${id}`)
@@ -37,6 +39,13 @@ export default function Detail(props: any) {
     }
   };
 
+  //date
+  useEffect(() => {
+    const str = detail?.timestamp || "";
+    const strIndex = str.indexOf("T"); //10
+    setDate(str.slice(0, strIndex));
+  }, [detail]);
+
   return (
     <main>
       <div className={detailCss.section}>
@@ -52,7 +61,7 @@ export default function Detail(props: any) {
               <h1>{detail?.title}</h1>
 
               <div className={detailCss.date_box}>
-                <p>날짜</p>
+                <p>{date}</p>
               </div>
 
               <div className={detailCss.text_wrap}>
@@ -70,7 +79,9 @@ export default function Detail(props: any) {
           <button onClick={() => router.push("/components/list")}>
             목록으로
           </button>
-          <button>수정</button>
+          <button onClick={() => router.push(`/components/edit/${id}`)}>
+            수정
+          </button>
           <button onClick={handleDelete}>삭제</button>
         </div>
       </div>

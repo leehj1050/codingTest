@@ -8,6 +8,8 @@ import QuillEditor from "./QuillEditor";
 export interface contentsInfo {
   title: string;
   text: string;
+  // timpestamp: string;
+  // time: string;
 }
 
 export default function Write() {
@@ -18,26 +20,26 @@ export default function Write() {
   const month = ("0" + (1 + now.getMonth())).slice(-2);
   const day = ("0" + now.getDate()).slice(-2);
 
-  const [contents, setContents] = useState<contentsInfo>({
-    title: "",
-    text: "",
-  });
+  //user입력
+  const [userTitle, setUserTitle] = useState("");
+  const [userText, setUserText] = useState("");
 
   //onChange
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setContents({ ...contents, title: e.target.value });
+    setUserTitle(e.target.value);
   };
+
   //onClick
   const handleSave = () => {
-    if (contents.title === "") {
+    if (userTitle === "") {
       alert("제목을 입력해주세요");
-    } else if (contents.text === "") {
+    } else if (userText === "") {
       alert("내용을 입력해주세요");
     } else {
       if (confirm("게시물을 등록하시겠습니까?")) {
         fetch("/api/upload", {
           method: "POST",
-          body: JSON.stringify(contents),
+          body: JSON.stringify({ title: userTitle, text: userText }),
         })
           .then((res) => res.json())
           .then((json) => {
@@ -67,7 +69,7 @@ export default function Write() {
         </div>
 
         <div className={write.editor_box}>
-          <QuillEditor contents={contents} setContents={setContents} />
+          <QuillEditor userText={userText} setUserText={setUserText} />
         </div>
 
         <div className={write.buttonBox}>

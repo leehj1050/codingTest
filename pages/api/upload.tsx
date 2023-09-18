@@ -13,5 +13,6 @@ export default async function UploadApi(req: Request, res: Response) {
       timestamp: nowTime, //시간순 정렬을 위한
     });
   }
+
   return res.status(200).json({ message: "게시글이 등록 되었습니다." });
 }

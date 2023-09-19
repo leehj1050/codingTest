@@ -4,28 +4,8 @@ import item from "../../styles/listItem.module.css";
 import Loading from "./loading";
 import Link from "next/link";
 
-export interface IDetailInfo {
-  title: string;
-  text: string;
-  id: string;
-  time: number;
-}
-
-export default function ListItem() {
-  const [data, setData] = useState<IDetailInfo[]>([]);
-  const [loading, setLoading] = useState<Boolean>(true);
+export default function ListItem({ search, data, loading }) {
   const [resultTime, setResultTime] = useState([]);
-
-  useEffect(() => {
-    const getListData = async () => {
-      await fetch("/api/list")
-        .then((res) => res.json())
-        .then((data) => {
-          setData(data), setLoading(false);
-        });
-    };
-    getListData();
-  }, []);
 
   //time
   useEffect(() => {
@@ -61,18 +41,24 @@ export default function ListItem() {
             </div>
           </div>
         ) : data.length > 0 ? (
-          data.map((i, idx) => {
-            return (
-              <Link
-                href={`/components/detail/${i.id}`}
-                className={item.item}
-                key={idx}
-              >
-                <p>{i.title}</p>
-                <p>{resultTime[idx]}</p>
-              </Link>
-            );
-          })
+          data
+            .filter((item) => {
+              return search === "" ? item : item.title.includes(search);
+            })
+            .map((i, idx) => {
+              return (
+                <Link
+                  href={`/components/detail/${i.id}`}
+                  className={item.item}
+                  key={idx}
+                >
+                  <p>{i.title}</p>
+                  <p style={{ fontSize: "13px", color: "lightgray" }}>
+                    {resultTime[idx]}
+                  </p>
+                </Link>
+              );
+            })
         ) : (
           <div className={item.emptyBox}>
             <p style={{ textAlign: "center", padding: "3em 0" }}>

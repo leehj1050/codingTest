@@ -4,7 +4,7 @@ import Pagination from "react-js-pagination";
 const PagiNation = ({ data, setPagePost }) => {
   //pageNation
   const [currentPage, setCurrentPage] = useState<number>(1); //현재페이지
-  const postPerPage: number = 5; //페이지당 게시글 수
+  const postPerPage: number = 10; //페이지당 게시글 수
   const indexOfLastPost: number = currentPage * postPerPage;
   const indexOfFirstPost: number = indexOfLastPost - postPerPage;
 

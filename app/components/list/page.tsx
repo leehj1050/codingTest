@@ -3,32 +3,33 @@ import { useEffect, useState } from "react";
 import list from "../../styles/list.module.css";
 import { MdCancel, MdSearch } from "react-icons/md";
 import ListItem from "./listItem";
-import PageNation from "./pageNation";
 import Link from "next/link";
+import PagiNation from "./pagiNation";
 
-export interface IDetailInfo {
+export type IDetailInfo = {
   title: string;
   text: string;
   id: string;
   time: number;
-}
+};
 
 export default function List() {
   const [data, setData] = useState<IDetailInfo[]>([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState<Boolean>(true);
-  const [pageData, setPageData] = useState([]);
+  //pagiNation
+  const [pagePost, setPagePost] = useState<IDetailInfo[]>(data);
 
-  //
+  //Load Data
   useEffect(() => {
-    const getListData = async () => {
+    const getData = async () => {
       await fetch("/api/list")
         .then((res) => res.json())
         .then((data) => {
           setData(data), setLoading(false);
         });
     };
-    getListData();
+    getData();
   }, []);
 
   //search
@@ -40,8 +41,6 @@ export default function List() {
   const cancelClick = () => {
     setSearch("");
   };
-
-  console.log("data >> ", pageData);
 
   return (
     <main>
@@ -68,11 +67,16 @@ export default function List() {
         </div>
       </div>
 
-      <ListItem search={search} data={pageData} loading={loading} />
+      <ListItem
+        search={search}
+        data={data}
+        pagePost={pagePost}
+        loading={loading}
+      />
       <div className={list.buttonBox}>
         <Link href="/components/write">글쓰기</Link>
       </div>
-      <PageNation data={data} setPageData={setPageData} />
+      <PagiNation data={data} setPagePost={setPagePost} />
     </main>
   );
 }

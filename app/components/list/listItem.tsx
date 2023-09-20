@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import item from "../../styles/listItem.module.css";
 import Loading from "./loading";
 import Link from "next/link";
+import { IDetailInfo } from "./page";
 
-export default function ListItem({ search, data, loading }) {
+export default function ListItem({ search, data, loading, pagePost }) {
   const [resultTime, setResultTime] = useState([]);
 
   //time
   useEffect(() => {
-    const result = data.map((time) => detailDate(time.time));
+    const result = data.map((time: IDetailInfo) => detailDate(time.time));
     setResultTime(result);
   }, [data]);
 
@@ -41,11 +42,11 @@ export default function ListItem({ search, data, loading }) {
             </div>
           </div>
         ) : data.length > 0 ? (
-          data
-            .filter((item) => {
+          pagePost
+            .filter((item: IDetailInfo) => {
               return search === "" ? item : item.title.includes(search);
             })
-            .map((i, idx) => {
+            .map((i: IDetailInfo, idx: number) => {
               return (
                 <Link
                   href={`/components/detail/${i.id}`}

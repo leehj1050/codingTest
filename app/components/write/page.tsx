@@ -4,14 +4,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import QuillEditor from "./QuillEditor";
 
-//type
-export interface contentsInfo {
-  title: string;
-  text: string;
-  // timpestamp: string;
-  // time: string;
-}
-
 export default function Write() {
   const router = useRouter();
   //date

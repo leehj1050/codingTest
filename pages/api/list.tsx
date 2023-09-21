@@ -1,7 +1,8 @@
 import { db } from "../../utils/firebase";
 import { collection, getDocs, query, orderBy } from "firebase/firestore/lite";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function List(req: Request, res: Response) {
+export default async function List(req: NextApiRequest, res: NextApiResponse) {
   const listItem = collection(db, "list");
   const userSnap = await getDocs(query(listItem, orderBy("timestamp", "desc")));
   const result = userSnap.docs.map((doc) => ({

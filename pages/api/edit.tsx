@@ -1,7 +1,11 @@
 import { db } from "../../utils/firebase";
 import { doc, updateDoc } from "firebase/firestore/lite";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function EditApi(req: Request, res: Response) {
+export default async function EditApi(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   //time
   const nowTime = new Date();
   const body = JSON.parse(req.body);

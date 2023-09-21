@@ -1,7 +1,11 @@
 import { collection, addDoc } from "firebase/firestore/lite";
 import { db } from "../../utils/firebase";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function UploadApi(req: Request, res: Response) {
+export default async function UploadApi(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   //time
   const nowTime = new Date();
   //

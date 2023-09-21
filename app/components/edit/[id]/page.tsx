@@ -4,15 +4,27 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import QuillEditor from "../../write/QuillEditor";
 
-export default function Edit(props: any) {
+interface propsType {
+  title: string;
+  text: string;
+  timestamp: string;
+}
+
+interface EditProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function Edit(props: EditProps) {
   const router = useRouter();
   const { id } = props.params;
   //
-  const [editData, setEditData] = useState([]); //수정할 데이터 불러옴
+  const [editData, setEditData] = useState<propsType | null>(null); //수정할 데이터 불러옴
   const [date, setDate] = useState(""); //날짜
   //user수정
-  const [editTitle, setEditTitle] = useState(editData.title); //수정된 title
-  const [editText, setEditText] = useState(editData.text); //수정된 text
+  const [editTitle, setEditTitle] = useState<string>(""); //수정된 title
+  const [editText, setEditText] = useState<string>(""); //수정된 text
   //
   useEffect(() => {
     fetch(`/api/detail?id=${id}`)
@@ -22,10 +34,13 @@ export default function Edit(props: any) {
 
   //date
   useEffect(() => {
-    const str = editData.timestamp || "";
-    const strIndex = str.indexOf("T"); //10
-    setDate(str.slice(0, strIndex));
-    setEditText(editData.text);
+    if (editData) {
+      const str = editData.timestamp || "";
+      const strIndex = str.indexOf("T"); //10
+      setDate(str.slice(0, strIndex));
+      setEditText(editData.text);
+      setEditTitle(editData.title);
+    }
   }, [editData]);
 
   //edit Title
@@ -50,8 +65,8 @@ export default function Edit(props: any) {
       })
         .then((res) => res.json())
         .then((json) => {
-          alert(json.message);
           router.push("/components/list");
+          alert(json.message);
         });
     }
   };
@@ -67,8 +82,7 @@ export default function Edit(props: any) {
           <input
             className={editCss.titleInput}
             name="title"
-            defaultValue={editData.title}
-            key={editData.title}
+            value={editTitle}
             onChange={handleChange}
           />
         </div>

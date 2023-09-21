@@ -5,17 +5,25 @@ import Loading from "./loading";
 import Link from "next/link";
 import { IDetailInfo } from "./page";
 
-export default function ListItem({ data, loading, pagePost }) {
-  const [resultTime, setResultTime] = useState([]);
+export type propsType = {
+  data: IDetailInfo[];
+  loading: Boolean;
+  pagePost: IDetailInfo[];
+};
+
+export default function ListItem({ data, loading, pagePost }: propsType) {
+  const [resultTime, setResultTime] = useState<string[]>([]);
 
   //time
   useEffect(() => {
-    const result = data.map((time: IDetailInfo) => detailDate(time.time));
+    const result: string[] = pagePost.map((time: IDetailInfo) =>
+      detailDate(time.time)
+    );
     setResultTime(result);
-  }, [data]);
+  }, [pagePost]);
 
   const detailDate = (a: number) => {
-    const milliSeconds: number = new Date() - a;
+    const milliSeconds: number = Number(new Date()) - a;
     const seconds = milliSeconds / 1000;
     if (seconds < 60) return "방금전";
     const minutes = seconds / 60;
@@ -31,10 +39,6 @@ export default function ListItem({ data, loading, pagePost }) {
     const years = days / 365;
     return `${Math.floor(years)}년 전`;
   };
-
-  // data.filter((item) => {
-  //   return search === "" ? item : item.title.includes(search);
-  // })
 
   return (
     <div className={item.section}>

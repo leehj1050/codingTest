@@ -11,7 +11,13 @@ export interface detailInfo {
   timestamp: string;
 }
 
-export default function Detail(props: any) {
+interface EditProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function Detail(props: EditProps) {
   const router = useRouter();
   const { id } = props.params;
 

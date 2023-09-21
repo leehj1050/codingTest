@@ -41,9 +41,6 @@ export default function List() {
     }
   }, [data, currentPage, search]);
 
-  console.log("첫 데이터 >> ", pagePost);
-  console.log("서치length", search.length);
-
   //Load Data
   useEffect(() => {
     const getData = async () => {

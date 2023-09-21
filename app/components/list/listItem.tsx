@@ -5,7 +5,7 @@ import Loading from "./loading";
 import Link from "next/link";
 import { IDetailInfo } from "./page";
 
-export default function ListItem({ search, data, loading, pagePost }) {
+export default function ListItem({ data, loading, pagePost }) {
   const [resultTime, setResultTime] = useState([]);
 
   //time
@@ -32,6 +32,10 @@ export default function ListItem({ search, data, loading, pagePost }) {
     return `${Math.floor(years)}년 전`;
   };
 
+  // data.filter((item) => {
+  //   return search === "" ? item : item.title.includes(search);
+  // })
+
   return (
     <div className={item.section}>
       <div className={item.item_wrap}>
@@ -42,26 +46,20 @@ export default function ListItem({ search, data, loading, pagePost }) {
             </div>
           </div>
         ) : data.length > 0 ? (
-          pagePost
-            .filter((item: IDetailInfo) => {
-              return search === ""
-                ? item
-                : item.title.includes(search) || item.text.includes(search);
-            })
-            .map((i: IDetailInfo, idx: number) => {
-              return (
-                <Link
-                  href={`/components/detail/${i.id}`}
-                  className={item.item}
-                  key={idx}
-                >
-                  <p>{i.title}</p>
-                  <p style={{ fontSize: "13px", color: "lightgray" }}>
-                    {resultTime[idx]}
-                  </p>
-                </Link>
-              );
-            })
+          pagePost.map((i: IDetailInfo, idx: number) => {
+            return (
+              <Link
+                href={`/components/detail/${i.id}`}
+                className={item.item}
+                key={idx}
+              >
+                <p>{i.title}</p>
+                <p style={{ fontSize: "13px", color: "lightgray" }}>
+                  {resultTime[idx]}
+                </p>
+              </Link>
+            );
+          })
         ) : (
           <div className={item.emptyBox}>
             <p style={{ textAlign: "center", padding: "3em 0" }}>

@@ -31,8 +31,6 @@ export default function Edit(props: any) {
   //edit Title
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditTitle(e.target.value);
-    console.log(">>> target", editTitle);
-    console.log(">>> edit", editTitle);
   };
 
   //edit Text

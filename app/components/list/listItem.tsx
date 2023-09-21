@@ -44,7 +44,9 @@ export default function ListItem({ search, data, loading, pagePost }) {
         ) : data.length > 0 ? (
           pagePost
             .filter((item: IDetailInfo) => {
-              return search === "" ? item : item.title.includes(search);
+              return search === ""
+                ? item
+                : item.title.includes(search) || item.text.includes(search);
             })
             .map((i: IDetailInfo, idx: number) => {
               return (

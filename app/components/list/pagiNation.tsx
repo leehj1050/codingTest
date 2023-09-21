@@ -16,8 +16,6 @@ const PagiNation = ({ data, setPagePost }) => {
     setPagePost(data.slice(indexOfFirstPost, indexOfLastPost));
   }, [data, currentPage]);
 
-  console.log("type >> ", typeof setPagePost);
-
   return (
     <Pagination
       activePage={currentPage}

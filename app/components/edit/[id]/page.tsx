@@ -4,21 +4,15 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import QuillEditor from "../../write/QuillEditor";
 
-export interface editInfo {
-  title: string;
-  text: string;
-  timestamp: string;
-}
-
 export default function Edit(props: any) {
   const router = useRouter();
   const { id } = props.params;
   //
-  const [editData, setEditData] = useState<editInfo>({});
+  const [editData, setEditData] = useState([]); //수정할 데이터 불러옴
   const [date, setDate] = useState(""); //날짜
   //user수정
-  const [editTitle, setEditTitle] = useState("");
-  const [editText, setEditText] = useState(editData.text);
+  const [editTitle, setEditTitle] = useState(editData.title); //수정된 title
+  const [editText, setEditText] = useState(editData.text); //수정된 text
   //
   useEffect(() => {
     fetch(`/api/detail?id=${id}`)
@@ -28,7 +22,7 @@ export default function Edit(props: any) {
 
   //date
   useEffect(() => {
-    const str = editData?.timestamp || "";
+    const str = editData.timestamp || "";
     const strIndex = str.indexOf("T"); //10
     setDate(str.slice(0, strIndex));
     setEditText(editData.text);
@@ -37,19 +31,31 @@ export default function Edit(props: any) {
   //edit Title
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditTitle(e.target.value);
+    console.log(">>> target", editTitle);
+    console.log(">>> edit", editTitle);
   };
 
   //edit Text
   const handleEdit = () => {
-    fetch("/api/edit", {
-      method: "PUT",
-      body: JSON.stringify({ title: editTitle, text: editText, id: id }),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        alert(json.message);
-        router.push("/components/list");
-      });
+    if (editTitle === "") {
+      alert("제목을 입력해주세요");
+    } else if (editText === "") {
+      alert("내용을 입력해주세요");
+    } else {
+      fetch("/api/edit", {
+        method: "PUT",
+        body: JSON.stringify({
+          title: editTitle,
+          text: editText,
+          id: id,
+        }),
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          alert(json.message);
+          router.push("/components/list");
+        });
+    }
   };
 
   return (
@@ -63,7 +69,8 @@ export default function Edit(props: any) {
           <input
             className={editCss.titleInput}
             name="title"
-            defaultValue={editData?.title}
+            defaultValue={editData.title}
+            key={editData.title}
             onChange={handleChange}
           />
         </div>

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 //
-import { storage } from "../../../utils/firebase";
+import { storage } from "../utils/firebase";
 import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
 
 // 에디터 생성

@@ -2,7 +2,7 @@
 import write from "../../styles/write.module.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import QuillEditor from "./QuillEditor";
+import QuillEditor from "../../QuillEditor";
 
 export default function Write() {
   const router = useRouter();

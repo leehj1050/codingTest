@@ -2,7 +2,7 @@
 import editCss from "../../../styles/write.module.css";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import QuillEditor from "../../write/QuillEditor";
+import QuillEditor from "../../../QuillEditor";
 
 interface propsType {
   title: string;

@@ -1,8 +1,8 @@
 "use client";
-import editCss from "../../../styles/write.module.css";
+import editCss from "../../styles/write.module.css";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import QuillEditor from "../../../QuillEditor";
+import QuillEditor from "../../QuillEditor";
 
 interface propsType {
   title: string;
@@ -65,7 +65,7 @@ export default function Edit(props: EditProps) {
       })
         .then((res) => res.json())
         .then((json) => {
-          router.push("/components/list");
+          router.push("/list");
           alert(json.message);
         });
     }
@@ -96,7 +96,7 @@ export default function Edit(props: EditProps) {
         </div>
 
         <div className={editCss.buttonBox}>
-          <button onClick={() => router.push("/components/list")}>취소</button>
+          <button onClick={() => router.push("/list")}>취소</button>
           <button onClick={handleEdit}>저장</button>
         </div>
       </div>

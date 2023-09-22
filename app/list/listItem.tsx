@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import item from "../../styles/listItem.module.css";
+import item from "../styles/listItem.module.css";
 import Loading from "./loading";
 import Link from "next/link";
 import { IDetailInfo } from "./page";
@@ -52,11 +52,7 @@ export default function ListItem({ data, loading, pagePost }: propsType) {
         ) : data.length > 0 ? (
           pagePost.map((i: IDetailInfo, idx: number) => {
             return (
-              <Link
-                href={`/components/detail/${i.id}`}
-                className={item.item}
-                key={idx}
-              >
+              <Link href={`/detail/${i.id}`} className={item.item} key={idx}>
                 <p>{i.title}</p>
                 <p style={{ fontSize: "13px", color: "lightgray" }}>
                   {resultTime[idx]}

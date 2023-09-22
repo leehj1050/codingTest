@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import list from "../../styles/list.module.css";
+import list from "../styles/list.module.css";
 import { MdCancel, MdSearch } from "react-icons/md";
 import ListItem from "./listItem";
 import Link from "next/link";
@@ -90,7 +90,7 @@ export default function List() {
 
       <ListItem data={data} pagePost={pagePost} loading={loading} />
       <div className={list.buttonBox}>
-        <Link href="/components/write">글쓰기</Link>
+        <Link href="write">글쓰기</Link>
       </div>
       <Pagination
         activePage={currentPage}

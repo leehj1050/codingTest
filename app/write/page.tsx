@@ -1,8 +1,8 @@
 "use client";
-import write from "../../styles/write.module.css";
+import write from "../styles/write.module.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import QuillEditor from "../../QuillEditor";
+import QuillEditor from "../QuillEditor";
 
 export default function Write() {
   const router = useRouter();
@@ -35,7 +35,7 @@ export default function Write() {
         })
           .then((res) => res.json())
           .then((json) => {
-            alert(json.message), router.push("/components/list");
+            alert(json.message), router.push("/list");
           });
       }
     }
@@ -53,6 +53,7 @@ export default function Write() {
             className={write.titleInput}
             name="title"
             onChange={handleChange}
+            value={userTitle}
           />
         </div>
 
@@ -65,7 +66,7 @@ export default function Write() {
         </div>
 
         <div className={write.buttonBox}>
-          <button onClick={() => router.push("/components/list")}>취소</button>
+          <button onClick={() => router.push("/list")}>취소</button>
           <button onClick={handleSave}>저장</button>
         </div>
       </div>

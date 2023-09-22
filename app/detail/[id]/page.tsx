@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import detailCss from "../../../styles/write.module.css";
+import detailCss from "../../styles/write.module.css";
 import { useRouter } from "next/navigation";
 import * as DOMPurify from "dompurify";
 import Loading from "../../list/loading";
@@ -38,7 +38,7 @@ export default function Detail(props: EditProps) {
       fetch(`/api/delete?id=${id}`)
         .then((res) => res.json())
         .then((json) => {
-          alert(json.message), router.push("/components/list");
+          alert(json.message), router.push("/list");
         });
     } else {
       console.log("삭제취소");
@@ -82,12 +82,8 @@ export default function Detail(props: EditProps) {
         </div>
 
         <div className={detailCss.button_wrap}>
-          <button onClick={() => router.push("/components/list")}>
-            목록으로
-          </button>
-          <button onClick={() => router.push(`/components/edit/${id}`)}>
-            수정
-          </button>
+          <button onClick={() => router.push("/list")}>목록으로</button>
+          <button onClick={() => router.push(`/edit/${id}`)}>수정</button>
           <button onClick={handleDelete}>삭제</button>
         </div>
       </div>

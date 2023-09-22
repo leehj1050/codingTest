@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import "react-quill/dist/quill.snow.css";
-import ReactQuill from "react-quill";
+import dynamic from "next/dynamic";
 //
 import { storage } from "../utils/firebase";
 import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
@@ -8,6 +8,11 @@ import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
 // 에디터 생성
 const QuillEditor = ({ userText, setUserText }) => {
   const quillRef = useRef();
+  //dynamic => react-quill을 브라우저에서 작동시키도록 함
+  const ReactQuill = dynamic(import("react-quill"), {
+    ssr: false,
+    loading: () => <p>Loading ...</p>,
+  });
 
   // quill에서 사용할 모듈
   // useMemo를 사용하여 modules가 렌더링 시 에디터가 사라지는 버그를 방지

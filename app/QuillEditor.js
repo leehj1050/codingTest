@@ -6,19 +6,20 @@ import { storage } from "../utils/firebase";
 import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
 import Loading from "./list/loading";
 
+//dynamic => react-quill을 브라우저에서 작동시키도록 함
+const ReactQuill = dynamic(
+  async () => {
+    const { default: RQ } = await import("react-quill");
+    return function comp({ forwardRef, ...props }) {
+      return <RQ ref={forwardRef} {...props} />;
+    };
+  },
+  { ssr: false, loading: () => <Loading /> }
+);
+
 // 에디터 생성
 const QuillEditor = ({ userText, setUserText }) => {
   const quillRef = useRef();
-  //dynamic => react-quill을 브라우저에서 작동시키도록 함
-  const ReactQuill = dynamic(
-    async () => {
-      const { default: RQ } = await import("react-quill");
-      return function comp({ forwardRef, ...props }) {
-        return <RQ ref={forwardRef} {...props} />;
-      };
-    },
-    { ssr: false, loading: () => <Loading /> }
-  );
 
   // quill에서 사용할 모듈
   // useMemo를 사용하여 modules가 렌더링 시 에디터가 사라지는 버그를 방지
